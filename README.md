@@ -10,4 +10,20 @@ WinSCP(либо FileZilla) для доступа к файловой систе�
 HeidiSQL для редактирования базы данных
 ```
 Далее отправляйтесь на ваш сервер. Откройте WinSCP и с помощью значка запустите сессию PuTTY.
-Начинайте клонировать репозитории из списка ниже с помощью _git clone_
+```
+apt install sudo
+sudo apt install gcc g++ build-essential
+sudo apt install python3.5 python3-pip
+sudo apt install git
+sudo apt install redis-server
+sudo apt install vsftpd
+sudo apt install nginx
+sudo apt install php-fpm
+sudo apt install composer
+sudo apt install php7.0-mbstring
+sudo apt install php7.0-curl
+sudo apt install php-mysql
+sudo apt install mc screen
+sudo apt install luajit
+```
+Далее нужно установить mySQL. Это делается особым путём.
