@@ -45,3 +45,27 @@ sudo apt-get autoremove
 sudo apt-get autoclean
 ```
 И ещё раз пробуем ставить mySQL.
+
+Как дело с mySQL в шляпе переходим к репозиториям.
+Открываем каталог **/var/www/html/**
+```
+cd /var/www/html/
+```
+И начинаем по списку:
+```
+git clone --recursive https://github.com/semyon422/open-ripple
+git clone --recursive https://github.com/semyon422/omppc
+git clone --recursive https://github.com/osufx/pep.py
+git clone --recursive https://github.com/osuthailand/lets
+git clone --recursive https://zxq.co/ripple/rippleapi
+git clone --recursive https://zxq.co/ripple/hanayo
+git clone --recursive https://github.com/osuripple/old-frontend
+```
+Обращаю внимание, что гарантированно появятся ошибки secret. Это нормально.
+Далее:
+```
+git clone --recursive https://github.com/osufx/national-gallery
+git clone --recursive https://github.com/osufx/secret
+git clone --recursive https://github.com/osufx/ripple-python-common
+```
+Отлично. репозитории на месте.
