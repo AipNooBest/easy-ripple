@@ -36,3 +36,12 @@ sudo apt-get update
 ```
 sudo apt-get install mysql-server-5.6
 ```
+В том страшном случае, если у вас поставился MariaDB - сносите с помощью
+```
+sudo service mysql stop
+sudo apt-get --purge remove mysql* -y
+sudo apt-get --purge remove mariadb* -y
+sudo apt-get autoremove
+sudo apt-get autoclean
+```
+И ещё раз пробуем ставить mySQL.
