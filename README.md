@@ -33,11 +33,11 @@ pip3 install flask
 sudo add-apt-repository -y ppa:ondrej/mysql-5.6
 sudo apt-get update
 ```
-Игнорируем ошибки, если они возникают, и устанавливаем сервер MySQL. Следите за тем, чтобы у вас поставился именно MySQL, а не MariaDB!
+Игнорируем ошибки, если они возникают, и устанавливаем сервер MySQL. Следите за тем, чтобы у вас поставился **именно MySQL**, а не MariaDB!
 ```
 sudo apt-get install mysql-server-5.6
 ```
-В том страшном случае, если у вас поставился MariaDB - сносите с помощью
+В том страшном случае, **если у вас поставился MariaDB - сносите** с помощью
 ```
 sudo service mysql stop
 sudo apt-get --purge remove mysql* -y
