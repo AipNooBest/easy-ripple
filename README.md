@@ -2,7 +2,7 @@
 
 Первый в мире, по сути единственный гайд по поднятию сервера osu! на коленке. Готовьтесь к сборной солянке, слезам и разбитым мониторам.
 Первое, чем надо обзавестить - домен. Купите сразу. Aip купил на domains.webmoney.ru, DRV, в свою очередь на Hostinger. Выбирайте то, что нравится.
-Далее, настоятельно рекомендуем купить VDS. Но если у вас есть какая-то своя машина под сервер - используйте, ничего страшного. На сервере должна **обязательно** стоять Debian 9 "stretch".Работа и совместимость компонентов на других версиях не гарантирована!
+Далее, настоятельно рекомендуем купить VDS. Но если у вас есть какая-то своя машина под сервер - используйте, ничего страшного. На сервере должна **обязательно** стоять Debian 9 "stretch". Работа и совместимость компонентов на других версиях не гарантирована!
 
 Для удобства скачайте на компьютер-клиент ряд программ:
 ```
@@ -54,10 +54,9 @@ cd /var/www/html/
 ```
 И начинаем по списку:
 ```
-git clone --recursive https://github.com/semyon422/open-ripple
-git clone --recursive https://github.com/semyon422/omppc
-git clone --recursive https://github.com/osufx/pep.py
-git clone --recursive https://github.com/osuthailand/lets
+git clone --recursive https://github.com/AipNooBest/easy-ripple
+git clone --recursive https://github.com/osuthailand/pep.py
+git clone --recursive https://zxq.co/ripple/lets
 git clone --recursive https://zxq.co/ripple/rippleapi
 git clone --recursive https://zxq.co/ripple/hanayo
 git clone --recursive https://github.com/osuripple/old-frontend
@@ -70,3 +69,9 @@ git clone --recursive https://github.com/osufx/secret
 git clone --recursive https://github.com/osufx/ripple-python-common
 ```
 Отлично. репозитории на месте.
+Теперь нам необходимо зайти в папки lets и pep.py и установить нужные подмодули. В каждой из папок выполняем данные команды:
+```
+git submodule init && git submodule update
+pip install -r requirements.txt
+python3 setup.py build_ext --inplace
+```
