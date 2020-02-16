@@ -13,18 +13,19 @@ HeidiSQL для редактирования базы данных.
 Далее отправляйтесь на ваш сервер. Откройте WinSCP, подключитесь к вашему серверу и с помощью значка(http://aipserver.ru/p/WinSCP_scr12170.png) запустите сессию PuTTY. После этого нам необходимо
 ```
 apt install sudo
-sudo apt install gcc g++ build-essential
-sudo apt install python3.5 python3-pip
-sudo apt install git
-sudo apt install vsftpd
-sudo apt install nginx
-sudo apt install php-fpm
-sudo apt install composer
-sudo apt install php7.0-mbstring
-sudo apt install php7.0-curl
-sudo apt install php-mysql
-sudo apt install mc screen
-sudo apt install luajit
+sudo apt-get install gcc g++ build-essential
+sudo apt-get install python3.5 python3-pip
+sudo apt-get install git
+sudo apt-get install vsftpd
+sudo apt-get install nginx
+sudo apt-get install php-fpm
+sudo apt-get install composer
+sudo apt-get install php7.0-mbstring
+sudo apt-get install php7.0-curl
+sudo apt-get install php-mysql
+sudo apt-get install mc screen
+sudo apt-get install luajit
+sudo apt-get install golang-1.8
 ```
 Далее нужно установить mySQL. Это делается особым путём. Для начала нам необходимо добавить в sources.list репозиторий с рабочей версией MySQL 5.6
 ```
