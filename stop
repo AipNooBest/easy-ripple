@@ -1,0 +1,9 @@
+#!/bin/bash
+screen -S pep.py -X quit
+screen -S lets -X quit
+screen -S hanayo -X quit
+screen -S rippleapi -X quit
+screen -S avatar -X quit
+
+killall -9 hanayo
+killall -9 rippleapi
