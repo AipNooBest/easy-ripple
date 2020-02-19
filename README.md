@@ -70,7 +70,9 @@ git clone --recursive https://github.com/osufx/secret
 git clone --recursive https://github.com/osufx/ripple-python-common
 ```
 Отлично. репозитории на месте.
-Теперь нам необходимо зайти в папки lets и pep.py и установить нужные подмодули. В каждой из папок выполняем данные команды:
+Теперь нам необходимо зайти в папки lets и pep.py и установить нужные подмодули.
+Качаем из репозитория файл requirements.txt, кидаем в папки LETS и pep.py **с заменой** 
+В каждой из папок выполняем данные команды:
 ```
 git submodule init && git submodule update
 pip install -r requirements.txt
