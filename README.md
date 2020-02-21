@@ -77,18 +77,12 @@ git submodule init && git submodule update
 pip3 install -r requirements.txt
 python3 setup.py build_ext --inplace
 ```
-# Настройка сервера
-С данного момента предположим, что ваш сервер имеет домен aestival.space.
-Генерируем сертификат:
-```
-git clone https://github.com/Neilpang/acme.sh.git
-cd acme.sh
-./acme.sh --issue --standalone -d osu.aestival.space -d c.aestival.space -d a.aestival.space -d oldripple.aestival.space
-```
+Теперь нам необходимо добавить зависимости языка Go в файл bashrc для нормальной работы языка.
+Открываем файл:
 ```
 nano ~/.bashrc
 ```
-И затем добавляем в файл:
+И затем добавляем в него:
 ```
 export PATH=/usr/lib/go-1.8/bin:$PATH
 export GOPATH=$HOME/go
@@ -96,23 +90,56 @@ export PATH=$PATH:$GOPATH/bin
 export GOBIN=$GOPATH/bin
 source ~/.bashrc
 ```
-Возвращаемся в **/var/www/html/**:
+# Настройка сервера
+В примерах ниже замените DOMAIN на ваш домен.
+Генерируем сертификат:
+```
+git clone https://github.com/Neilpang/acme.sh.git
+cd acme.sh
+systemctl stop nginx
+./acme.sh --issue --standalone -d osu.DOMAIN -d c.DOMAIN -d a.DOMAIN -d oldripple.DOMAIN
+systemctl start nginx
+```
+В данной папке у вас появятся два файла: **osu.DOMAIN.cer** и **osu.DOMAIN.key**, где DOMAIN - ваш домен.
+Перенесите их в любое удобное вам место. Например, создайте папку certs и поместите туда данные сертификаты:
+```
+cd /var/www/html/
+mkdir certs
+mv /var/www/html/easy-ripple/acme.sh/osu.DOMAIN.cer certs/
+mv /var/www/html/easy-ripple/acme.sh/osu.DOMAIN.key certs/
+```
+Возвращаемся в **/var/www/html/**. Теперь настроим сервер для хранения аватаров:
 ```
 mkdir avatars
 mv /var/www/html/easy-ripple/avatarserver.py avatars/
 python3 avatarserver.py
 ```
-Затем переходим в каталог **/var/www/html/LETS/** и добавляем права:
+Затем переходим в каталог **/var/www/html/LETS/** и собираем калькулятор PP для его работы:
 ```
 cd pp/oppai-ng/ && chmod +x ./build && ./build && cd ../../
 ```
+Теперь сгенерируем сертификат для пользователей.
 Переходим в **/var/www/html/easy-ripple** и запсукаем генератор:
 ```
 ./gencert.sh
-wget https://raw.githubusercontent.com/osuthailand/ripple-auto-installer/master/ripple_database.sql
+```
+В папке появятся два файла: **key.pem** и **cert.pem**. Второй файл вам необходимо сохранить на вашу основную машину и позже рассылать всем желающим подключиться к серверу(либо поместить в свитчер, если вы собираетесь делать свой). Сделать это можно либо через SFTP, либо просто скопировать всё содержимое сертификата в буфер обмена, создать новый файл на основной машине, вставить туда содержимое сертификата(включая BEGIN CERTIFICATE и END CERTIFICATE) и сохранить как файл cert.crt.
+```
+cat < cert.pem
+```
+Настроим конфиги. В первую очередь, конфиг сайта. Редактируем файл ripple.conf.
+```
+nano ripple.conf
+```
+Заменяете все DOMAIN на ваш домен и прописывайте пути к сертификатам там, где это необходимо. Если server_name заканчивается на .ppy.sh, то прописывайте путь к файлам cert.pem и key.pem. Если же заканчивается на ваш домен, то прописывайте путь к файлам osu.вашдомен.cer и osu.вашдомен.key.
+Как закончили редактировать, переносим файл в директорию nginx и перезагружаем его:
+```
+cat ripple.conf > /etc/nginx/sites-available/default
+sudo systemctl restart nginx
 ```
 # Импорт базы данных
-Делаем импорт **(Где 'пароль' - пароль от mySQL. Вводить слитно с -p. Где 'БД' - название вашей базы данных)** с помощью:
+Для начала нам необходимо скачать саму базу данных
+Делаем импорт **(Где 'пароль' - пароль от mySQL. Вводить слитно с -p без кавычек. Где 'БД' - название вашей базы данных тоже без кавычек)** с помощью:
 ```
 mysql -p'пароль' 'БД' < /var/www/html/easy-ripple/ripple_database.sql
 ```
