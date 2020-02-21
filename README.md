@@ -27,7 +27,6 @@ sudo apt-get install php-mysql
 sudo apt-get install mc screen
 sudo apt-get install luajit
 sudo apt-get install golang-1.8
-pip3 install flask
 ```
 Далее нужно установить mySQL. Это делается особым путём. Для начала нам необходимо добавить в sources.list репозиторий с рабочей версией MySQL 5.6
 ```
@@ -77,4 +76,17 @@ git clone --recursive https://github.com/osufx/ripple-python-common
 git submodule init && git submodule update
 pip install -r requirements.txt
 python3 setup.py build_ext --inplace
+```
+Установим все необходимые модули Python 3:
+```
+pip3 install flask
+pip3 install tornado
+```
+# Настройка сервера
+С данного момента предположим, что ваш сервер имеет домен aestival.space.
+Сгенерируем сертификат:
+```
+git clone https://github.com/Neilpang/acme.sh.git
+cd acme.sh
+./acme.sh --issue --standalone -d osu.aestival.space -d c.aestival.space -d a.aestival.space -d oldripple.aestival.space
 ```
