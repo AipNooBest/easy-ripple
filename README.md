@@ -74,13 +74,8 @@ git clone --recursive https://github.com/osufx/ripple-python-common
 В каждой из папок выполняем данные команды:
 ```
 git submodule init && git submodule update
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 python3 setup.py build_ext --inplace
-```
-Установим все необходимые модули Python 3:
-```
-pip3 install flask
-pip3 install tornado
 ```
 # Настройка сервера
 С данного момента предположим, что ваш сервер имеет домен aestival.space.
@@ -89,4 +84,29 @@ pip3 install tornado
 git clone https://github.com/Neilpang/acme.sh.git
 cd acme.sh
 ./acme.sh --issue --standalone -d osu.aestival.space -d c.aestival.space -d a.aestival.space -d oldripple.aestival.space
+```
+```
+nano ~/.bashrc
+```
+Добавляем в файл:
+```
+export PATH=/usr/lib/go-1.8/bin:$PATH
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+export GOBIN=$GOPATH/bin
+source ~/.bashrc
+```
+В главной директории:
+```
+mkdir avatars
+mv /var/www/html/easy-ripple/avatarserver.py avatars/
+python3 avatarserver.py
+```
+В LETS:
+```
+cd pp/oppai-ng/ && chmod +x ./build && ./build && cd ../../
+```
+В easy-ripple:
+```
+./gencert.sh
 ```
