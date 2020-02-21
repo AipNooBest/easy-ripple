@@ -109,4 +109,9 @@ cd pp/oppai-ng/ && chmod +x ./build && ./build && cd ../../
 В easy-ripple:
 ```
 ./gencert.sh
+wget https://raw.githubusercontent.com/osuthailand/ripple-auto-installer/master/ripple_database.sql
+```
+Без разницы где:
+```
+mysql -pпароль БД < /var/www/html/easy-ripple/ripple_database.sql
 ```
