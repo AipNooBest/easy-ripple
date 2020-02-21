@@ -79,7 +79,7 @@ python3 setup.py build_ext --inplace
 ```
 # Настройка сервера
 С данного момента предположим, что ваш сервер имеет домен aestival.space.
-Сгенерируем сертификат:
+Генерируем сертификат:
 ```
 git clone https://github.com/Neilpang/acme.sh.git
 cd acme.sh
@@ -88,7 +88,7 @@ cd acme.sh
 ```
 nano ~/.bashrc
 ```
-Добавляем в файл:
+И затем добавляем в файл:
 ```
 export PATH=/usr/lib/go-1.8/bin:$PATH
 export GOPATH=$HOME/go
@@ -96,22 +96,30 @@ export PATH=$PATH:$GOPATH/bin
 export GOBIN=$GOPATH/bin
 source ~/.bashrc
 ```
-В главной директории:
+Возвращаемся в **/var/www/html/**:
 ```
 mkdir avatars
 mv /var/www/html/easy-ripple/avatarserver.py avatars/
 python3 avatarserver.py
 ```
-В LETS:
+Затем переходим в каталог **/var/www/html/LETS/** и добавляем права:
 ```
 cd pp/oppai-ng/ && chmod +x ./build && ./build && cd ../../
 ```
-В easy-ripple:
+Переходим в **/var/www/html/easy-ripple** и запсукаем генератор:
 ```
 ./gencert.sh
 wget https://raw.githubusercontent.com/osuthailand/ripple-auto-installer/master/ripple_database.sql
 ```
-Без разницы где:
+#Импорт базы данных
+Делаем импорт **(Где 'пароль' - пароль от mySQL. Вводить слитно с -p. Где 'БД' - название вашей базы данных)** с помощью:
 ```
-mysql -pпароль БД < /var/www/html/easy-ripple/ripple_database.sql
+mysql -p'пароль' 'БД' < /var/www/html/easy-ripple/ripple_database.sql
 ```
+Таким образом получаем базу данных с готовыми таблицами. Чтобы проверить этот факт можете сделать следующее:
+```
+mysql -p'пароль'
+use 'БД'
+SHOW TABLES;
+```
+Отобразятся таблицы.
