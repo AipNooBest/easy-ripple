@@ -111,7 +111,7 @@ cd pp/oppai-ng/ && chmod +x ./build && ./build && cd ../../
 ./gencert.sh
 wget https://raw.githubusercontent.com/osuthailand/ripple-auto-installer/master/ripple_database.sql
 ```
-#Импорт базы данных
+# Импорт базы данных
 Делаем импорт **(Где 'пароль' - пароль от mySQL. Вводить слитно с -p. Где 'БД' - название вашей базы данных)** с помощью:
 ```
 mysql -p'пароль' 'БД' < /var/www/html/easy-ripple/ripple_database.sql
