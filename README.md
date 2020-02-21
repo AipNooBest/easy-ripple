@@ -90,6 +90,24 @@ export PATH=$PATH:$GOPATH/bin
 export GOBIN=$GOPATH/bin
 source ~/.bashrc
 ```
+# Импорт базы данных
+Для начала вам нужно создать пустую базу данных с произвольным названием:
+**(Где 'пароль' - пароль от mySQL. Вводить слитно с -p без кавычек. Где 'БД' - название вашей базы данных тоже без кавычек)**
+```
+mysql -p'пароль'
+create database 'БД';
+quit
+```
+Делаем импорт с помощью:
+```
+mysql -p'пароль' 'БД' < /var/www/html/easy-ripple/ripple_database.sql
+```
+Таким образом получаем базу данных с готовыми таблицами. Чтобы проверить этот факт, можете сделать следующее:
+```
+mysql -p'пароль'
+use 'БД'
+SHOW TABLES;
+```
 # Настройка сервера
 В примерах ниже замените DOMAIN на ваш домен.
 Генерируем сертификат:
@@ -110,8 +128,8 @@ mv /var/www/html/easy-ripple/acme.sh/osu.DOMAIN.key certs/
 ```
 Возвращаемся в **/var/www/html/**. Теперь настроим сервер для хранения аватаров:
 ```
-mkdir avatars
-mv /var/www/html/easy-ripple/avatarserver.py avatars/
+mkdir avatar && cd avatar && mkdir avatars
+mv /var/www/html/easy-ripple/avatarserver.py /var/www/html/avatar/
 python3 avatarserver.py
 ```
 Затем переходим в каталог **/var/www/html/LETS/** и собираем калькулятор PP для его работы:
@@ -137,16 +155,19 @@ nano ripple.conf
 cat ripple.conf > /etc/nginx/sites-available/default
 sudo systemctl restart nginx
 ```
-# Импорт базы данных
-Для начала нам необходимо скачать саму базу данных
-Делаем импорт **(Где 'пароль' - пароль от mySQL. Вводить слитно с -p без кавычек. Где 'БД' - название вашей базы данных тоже без кавычек)** с помощью:
+Настраиваете конфиги pep.py.config.ini и lets.config.ini и переносите их в соответствующие папки, попутно переименовав каждый в config.ini. Для нормальной работы osu!direct оставьте поле [cheesegull] нетронутым.
 ```
-mysql -p'пароль' 'БД' < /var/www/html/easy-ripple/ripple_database.sql
+nano pep.py.config.ini
+nano lets.config.ini
+cp pep.py.config.ini ../pep.py/config.ini
+cp lets.config.ini ../lets/config.ini
 ```
-Таким образом получаем базу данных с готовыми таблицами. Чтобы проверить этот факт, можете сделать следующее:
+Точно также настраиваете hanayo.conf и перекидываете его в папку hanayo.
 ```
-mysql -p'пароль'
-use 'БД'
-SHOW TABLES;
+nano hanayo.conf
+cp hanayo.conf ../hanayo/
 ```
-Отобразятся таблицы.
+После успешной настройки сервера вам необходимо заранее пофиксить синтаксические ошибки некоторых файлов(неизвестно, с чем это связано, возможно баги копирования файлов .py с GitHub или конвертирования версий, но факт остаётся фактом). К счастью, мы сделали всю работу за вас и вам остаётся лишь запустить скрипт починки файлов:
+```
+./fixsyntaxerrors.sh
+```
