@@ -116,7 +116,7 @@ wget https://raw.githubusercontent.com/osuthailand/ripple-auto-installer/master/
 ```
 mysql -p'пароль' 'БД' < /var/www/html/easy-ripple/ripple_database.sql
 ```
-Таким образом получаем базу данных с готовыми таблицами. Чтобы проверить этот факт можете сделать следующее:
+Таким образом получаем базу данных с готовыми таблицами. Чтобы проверить этот факт, можете сделать следующее:
 ```
 mysql -p'пароль'
 use 'БД'
