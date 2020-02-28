@@ -13,20 +13,20 @@ HeidiSQL для редактирования базы данных.
 # Установка зависимостей
 Откройте WinSCP, подключитесь к вашему серверу и с помощью значка(http://aipserver.ru/p/WinSCP_scr12170.png) запустите сессию PuTTY. После этого нам нужно установить все зависимости, необходимые для работы.
 ```
-apt install sudo
-sudo apt-get install gcc g++ build-essential
-sudo apt-get install python3.5 python3-pip
-sudo apt-get install git
-sudo apt-get install vsftpd
-sudo apt-get install nginx
-sudo apt-get install php-fpm
-sudo apt-get install composer
-sudo apt-get install php7.0-mbstring
-sudo apt-get install php7.0-curl
-sudo apt-get install php-mysql
-sudo apt-get install mc screen
-sudo apt-get install luajit
-sudo apt-get install golang-1.8
+apt install sudo -y
+sudo apt-get install gcc g++ build-essential -y
+sudo apt-get install python3.5 python3-pip -y
+sudo apt-get install git -y
+sudo apt-get install vsftpd -y
+sudo apt-get install nginx -y
+sudo apt-get install php-fpm -y
+sudo apt-get install composer -y
+sudo apt-get install php7.0-mbstring -y
+sudo apt-get install php7.0-curl -y
+sudo apt-get install php-mysql -y
+sudo apt-get install mc screen -y
+sudo apt-get install luajit -y
+sudo apt-get install golang-1.8 -y
 ```
 Далее нужно установить mySQL. Это делается особым путём. Для начала нам необходимо добавить в sources.list репозиторий с рабочей версией MySQL 5.6
 ```
@@ -35,7 +35,7 @@ sudo apt-get update
 ```
 Игнорируем ошибки, если они возникают, и устанавливаем сервер MySQL. Следите за тем, чтобы у вас поставился **именно MySQL**, а не MariaDB!
 ```
-sudo apt-get install mysql-server-5.6
+sudo apt-get install mysql-server-5.6 -y
 ```
 В том страшном случае, **если у вас поставился MariaDB - сносите** с помощью
 ```
