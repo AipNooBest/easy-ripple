@@ -15,6 +15,7 @@ HeidiSQL для редактирования базы данных.
 ```
 apt install sudo -y
 sudo apt-get install gcc g++ build-essential -y
+sudo apt-get install software-properties-common
 sudo apt-get install python3.5 python3-pip -y
 sudo apt-get install git -y
 sudo apt-get install vsftpd -y
