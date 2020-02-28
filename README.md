@@ -90,6 +90,9 @@ export PATH=/usr/lib/go-1.8/bin:$PATH
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export GOBIN=$GOPATH/bin
+```
+Обновляем файл:
+```
 source ~/.bashrc
 ```
 # Импорт базы данных
