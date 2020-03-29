@@ -57,22 +57,14 @@ cd /var/www/html/
 И начинаем по списку:
 ```
 git clone --recursive https://github.com/AipNooBest/easy-ripple
-git clone --recursive https://github.com/osuthailand/pep.py
-git clone --recursive https://zxq.co/ripple/lets
-git clone --recursive https://zxq.co/ripple/rippleapi
-git clone --recursive https://zxq.co/ripple/hanayo
-git clone --recursive https://github.com/osuripple/old-frontend
-```
-Обращаю внимание, что гарантированно появятся ошибки secret. Это нормально.
-Далее:
-```
-git clone --recursive https://github.com/osufx/national-gallery
-git clone --recursive https://github.com/osufx/secret
-git clone --recursive https://github.com/osufx/ripple-python-common
+git clone --recursive https://github.com/AipNooBest/pep.py
+git clone --recursive https://github.com/AipNooBest/LETS
+git clone --recursive https://github.com/AipNooBest/api
+git clone --recursive https://github.com/AipNooBest/hanayo
+git clone --recursive https://github.com/AipNooBest/old-frontend
 ```
 Отлично. репозитории на месте.
 Теперь нам необходимо зайти в папки lets и pep.py и установить нужные подмодули.
-Перемещаем из нашего репозитория файлик requirements.txt, кидаем в папки LETS и pep.py **с заменой**. 
 В каждой из папок выполняем данные команды:
 ```
 git submodule init && git submodule update
@@ -97,7 +89,7 @@ source ~/.bashrc
 ```
 # Импорт базы данных
 Для начала вам нужно создать пустую базу данных с произвольным названием:
-**(Где 'пароль' - пароль от mySQL. Вводить слитно с -p без кавычек. Где 'БД' - название вашей базы данных тоже без кавычек)**
+**(Где 'пароль' - пароль от mySQL. Вводить слитно с -p. Где 'БД' - название вашей базы данных)**
 ```
 mysql -p'пароль'
 create database 'БД';
@@ -105,12 +97,12 @@ quit
 ```
 Делаем импорт с помощью:
 ```
-mysql -p'пароль' 'БД' < /var/www/html/easy-ripple/ripple_database.sql
+mysql -pпароль БД < /var/www/html/easy-ripple/ripple_database.sql
 ```
 Таким образом получаем базу данных с готовыми таблицами. Чтобы проверить этот факт, можете сделать следующее:
 ```
-mysql -p'пароль'
-use 'БД'
+mysql -pпароль
+use БД
 SHOW TABLES;
 ```
 # Настройка сервера
@@ -128,8 +120,8 @@ systemctl start nginx
 ```
 cd /var/www/html/
 mkdir certs
-mv /var/www/html/easy-ripple/acme.sh/osu.DOMAIN.cer certs/
-mv /var/www/html/easy-ripple/acme.sh/osu.DOMAIN.key certs/
+mv /путь/к/сертификату/osu.DOMAIN.cer certs/
+mv /путь/к/сертификату/osu.DOMAIN.key certs/
 ```
 Возвращаемся в **/var/www/html/**. Теперь настроим сервер для хранения аватаров:
 ```
