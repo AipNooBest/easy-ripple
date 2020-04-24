@@ -29,6 +29,7 @@ sudo apt-get install php-mysql -y
 sudo apt-get install mc screen -y
 sudo apt-get install luajit -y
 sudo apt-get install golang-1.8 -y
+sudo apt-get install socat -y
 ```
 Далее нужно установить mySQL. Это делается особым путём. Для начала нам необходимо добавить в sources.list репозиторий с рабочей версией MySQL 5.6
 ```
