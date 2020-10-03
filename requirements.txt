@@ -9,3 +9,4 @@ redis==2.10.5
 cython==0.27.3
 datadog==0.14.0
 progressbar2==3.38.0
+flask==1.1.2
